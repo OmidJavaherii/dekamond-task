@@ -2,7 +2,6 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 
 type User = {
     name: string;
@@ -12,7 +11,6 @@ type User = {
 
 export default function DashboardPage() {
     const [user, setUser] = useState<User | null>(null);
-    const [imgError, setImgError] = useState(false);
     const router = useRouter();
 
     // check user validation
@@ -36,13 +34,10 @@ export default function DashboardPage() {
 
     return (
         <div className="w-full max-w-md mx-auto p-6 bg-white rounded-2xl shadow text-center">
-            <Image
-                src={imgError ? "/default-avatar.png" : user.picture}
-                width={80}
-                height={80}
+            <img
+                src={user.picture}
                 alt={user.name}
-                className="rounded-full mx-auto mb-4"
-                onError={() => setImgError(true)}
+                className="w-20 h-20 rounded-full mx-auto mb-4"
             />
             <h1 className="text-xl font-bold mb-2">
                 خوش آمدی {user.name}
