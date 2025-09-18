@@ -11,13 +11,14 @@ export default function LoginPage() {
     const [loading, setLoading] = useState(false);
     const router = useRouter();
 
-
+    // auto focus on first rendering
     useEffect(() => {
         if (inputRef.current) {
             inputRef.current.focus()
         }
     }, [])
 
+    // login funtion
     const handleLogin = async () => {
         if (!inputRef.current) {
             return
@@ -31,6 +32,7 @@ export default function LoginPage() {
         setLoading(true);
 
 
+        // get data from api
         try {
             const res = await fetch("https://randomuser.me/api/?results=1&nat=us");
             const data = await res.json();
@@ -43,7 +45,7 @@ export default function LoginPage() {
                 picture: user.picture.medium,
             };
 
-
+            // set on local storage
             localStorage.setItem("user", JSON.stringify(userData));
             router.push("/dashboard");
         } catch (err) {

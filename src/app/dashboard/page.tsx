@@ -12,9 +12,10 @@ type User = {
 
 export default function DashboardPage() {
     const [user, setUser] = useState<User | null>(null);
+    const [imgError, setImgError] = useState(false);
     const router = useRouter();
 
-
+    // check user validation
     useEffect(() => {
         const storedUser = localStorage.getItem("user");
         if (!storedUser) {
@@ -24,7 +25,7 @@ export default function DashboardPage() {
         }
     }, [router]);
 
-
+    // log out function
     const logout = () => {
         localStorage.removeItem("user");
         router.push("/login");
@@ -33,15 +34,15 @@ export default function DashboardPage() {
 
     if (!user) return null;
 
-
     return (
         <div className="w-full max-w-md mx-auto p-6 bg-white rounded-2xl shadow text-center">
             <Image
-                src={user.picture}
+                src={imgError ? "/default-avatar.png" : user.picture}
                 width={80}
                 height={80}
                 alt={user.name}
                 className="rounded-full mx-auto mb-4"
+                onError={() => setImgError(true)}
             />
             <h1 className="text-xl font-bold mb-2">
                 خوش آمدی {user.name}
