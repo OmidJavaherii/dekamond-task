@@ -76,10 +76,10 @@ export default function LoginPage() {
             {error && <p className="text-red-500 text-sm text-right mt-1">{error}</p>}
             <Button
                 type="submit"
-                className="w-full mt-4"
+                className="w-full mt-4 text-right"
                 disabled={loading}
             >
-                {loading ? "در حال ورود..." : "ورود"}
+                {loading ? "... در حال ورود" : "ورود"}
             </Button>
         </form >
     );
