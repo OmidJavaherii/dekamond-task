@@ -33,7 +33,7 @@ export default function DashboardPage() {
     if (!user) return null;
 
     return (
-        <div className="w-full max-w-md mx-auto p-6 bg-white rounded-2xl shadow text-center">
+        <div className="w-full max-w-sm mx-auto p-6 bg-white rounded-2xl shadow text-center">
             <img
                 src={user.picture}
                 alt={user.name}
